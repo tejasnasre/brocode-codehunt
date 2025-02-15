@@ -1,3 +1,4 @@
+// page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,16 +9,18 @@ import supabase from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
 
 interface Job {
-  id: string;
-  title: string;
+  id: bigint;
+  new_id: string;
+  job_title: string;
+  job_description: string;
   company_name: string;
   company_logo: string;
-  location: string;
+  job_location: string;
   job_type: string;
-  skills: string[];
-  salary_min: number;
-  salary_max: number;
+  job_minsalary: number;
+  job_maxsalary: number;
   created_at: string;
+  recruiter_id?: string;
 }
 
 export default function FindJobsPage() {
@@ -29,7 +32,7 @@ export default function FindJobsPage() {
     async function fetchJobs() {
       try {
         const { data, error } = await supabase
-          .from("jobs")
+          .from("all_jobs")
           .select("*")
           .order("created_at", { ascending: false });
 
@@ -73,16 +76,16 @@ export default function FindJobsPage() {
             ) : (
               jobs.map((job) => (
                 <JobCard
-                  key={job.id}
-                  id={job.id}
-                  title={job.title}
+                  key={job.new_id}
+                  id={job.new_id}
+                  title={job.job_title}
+                  description={job.job_description}
                   company={job.company_name}
-                  location={job.location}
+                  location={job.job_location}
                   type={job.job_type}
-                  tags={job.skills}
                   logo={job.company_logo}
-                  salaryMin={job.salary_min}
-                  salaryMax={job.salary_max}
+                  salaryMin={job.job_minsalary}
+                  salaryMax={job.job_maxsalary}
                   createdAt={new Date(job.created_at)}
                 />
               ))
