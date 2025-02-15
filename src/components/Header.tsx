@@ -34,6 +34,10 @@ export function Header() {
               <Link href={role === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker"}>
                 <Button variant="ghost">Dashboard</Button>
               </Link>
+              <Link href={role === "jobseeker" ? "/dashboard/jobseeker/profile" : "/dashboard/recruiter/profile"}>
+  <Button variant="ghost">Profile</Button>
+</Link>
+
               <Button
                 onClick={async () => {
                   await logout();
