@@ -20,8 +20,12 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
+          <Link href='/auth/login'>
           <Button variant="ghost">Login</Button>
+          </Link>
+          <Link href='/auth/signup'>
           <Button>Sign Up</Button>
+          </Link>
         </div>
       </div>
     </header>
