@@ -1,10 +1,10 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { CompanyLogos } from "@/components/company-logos"
-import { Categories } from "@/components/categories"
-import { PostingCTA } from "@/components/posting-cta"
-import { FeaturedJobs } from "@/components/featured-jobs"
-import { LatestJobs } from "@/components/latest-jobs"
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/hero";
+import { CompanyLogos } from "@/components/company-logos";
+import { Categories } from "@/components/categories";
+import { PostingCTA } from "@/components/posting-cta";
+import { FeaturedJobs } from "@/components/featured-jobs";
+import { LatestJobs } from "@/components/latest-jobs";
 
 export default function Home() {
   return (
@@ -17,6 +17,5 @@ export default function Home() {
       <FeaturedJobs />
       <LatestJobs />
     </main>
-  )
+  );
 }
-
