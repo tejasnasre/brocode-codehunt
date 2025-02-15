@@ -40,12 +40,12 @@ export default function Page() {
   };
 
   return (
-    <div className="bg-blue-50 flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
+    <div className="bg-white flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
       <h1 className="text-2xl font-bold text-center">Forgot Your Password?</h1>
       <p className="text-center text-gray-500">
         Don&apos;t worry, we&apos;ll help you reset it.
       </p>
-      <Card className="w-full max-w-md bg-blue-50">
+      <Card className="w-full max-w-md bg-white">
         <CardHeader>
           <CardTitle className="text-2xl text-gray-700 font-bold text-center">
             Reset Password
@@ -77,7 +77,7 @@ export default function Page() {
         <CardFooter className="flex justify-center">
           <p>
             Remember your password?{" "}
-            <Link href="/auth/login" className="text-blue-500 hover:underline">
+            <Link href="/auth/login" className="text-white0 hover:underline">
               Log in
             </Link>
           </p>
