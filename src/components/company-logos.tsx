@@ -22,8 +22,8 @@ export function CompanyLogos() {
                 width={160}
                 height={60}
                 className="transition-transform transform hover:scale-150"
-                priority={index === 0} // ✅ First image loads first to avoid mismatch
-                loading={index === 0 ? "eager" : "lazy"} // ✅ Prevent hydration mismatch
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
               />
             </div>
           ))}
