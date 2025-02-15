@@ -1,22 +1,21 @@
-// src/app/page.tsx
-import { SearchBar } from "@/components/browsecompanies/SearchBar";
-import { CompanyCard } from "@/components/browsecompanies/CompanyCard";
 import { CategoryGrid } from "@/components/browsecompanies/CategoryGrid";
-import { recommendedCompanies, categories } from "../data/mockData";
-import { Header } from "@/components/Header";
+import { CompanyCard } from "@/components/browsecompanies/CompanyCard";
+import { SearchBar } from "@/components/browsecompanies/SearchBar";
+import Footer from "@/components/Footer";
+// import { Header } from "@/components/Header";
+import { categories, recommendedCompanies } from "../data/mockData";
 
-export default function HomePage() {
+export default function CompaniesPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-
-      <main className="max-w-7xl mx-auto px-4 py-12">
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* <Header /> */}
+      <main className="flex-grow max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
-            Find your <span className="text-blue-500">dream companies</span>
+            Browse <span className="text-blue-500">Companies</span>
           </h1>
           <p className="text-gray-600">
-            Find the dream companies you dream work for
+            Explore companies to find your dream job
           </p>
         </div>
 
@@ -36,6 +35,7 @@ export default function HomePage() {
           <CategoryGrid categories={categories} />
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
