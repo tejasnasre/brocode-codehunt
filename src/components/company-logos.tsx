@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export function CompanyLogos() {
   const companies = [
-    { name: "Vodafone", logo: "/placeholder.svg" },
-    { name: "Intel", logo: "/placeholder.svg" },
-    { name: "Tesla", logo: "/placeholder.svg" },
-    { name: "AMD", logo: "/placeholder.svg" },
-    { name: "Talkit", logo: "/placeholder.svg" },
+    { name: "Vodafone", logo: "/assets/Vodafone-Logo.png" },
+    { name: "Intel", logo: "/assets/Intel-logo.png" },
+    { name: "Tesla", logo: "/assets/Tesla.png" },
+    { name: "AMD", logo: "/assets/AMD-Logo.png" },
+    { name: "Talkit", logo: "/assets/talkit.webp" },
   ];
 
   return (
@@ -19,9 +19,9 @@ export function CompanyLogos() {
               <Image
                 src={company.logo}
                 alt={company.name}
-                width={120}
-                height={40}
-                className="h-8 w-auto opacity-50 hover:opacity-100 transition-opacity"
+                width={160}
+                height={60}
+                className="transition-transform transform hover:scale-150"
                 priority={index === 0} // ✅ First image loads first to avoid mismatch
                 loading={index === 0 ? "eager" : "lazy"} // ✅ Prevent hydration mismatch
               />
