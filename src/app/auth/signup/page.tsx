@@ -38,7 +38,7 @@ export default function SignupPage() {
       const userRole = data.user?.user_metadata?.role || "jobseeker"; // Default role if not set
       setUser(data.user, userRole); // Store user and role in Zustand
       toast({ title: "Successfully signed up", description: "Account created successfully" });
-      router.push("/dashboard");
+      router.push("/dashboard/profile");
     }
   };
 

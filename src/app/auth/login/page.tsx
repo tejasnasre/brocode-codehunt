@@ -33,20 +33,37 @@ export default function LoginPage() {
 
       toast({ title: "Login Successful", description: "Redirecting..." });
 
-      // Redirect to /dashboard (it will auto-route based on role)
       router.push("/dashboard");
     }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleEmailLogin}>
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-        <Button type="submit">Login</Button>
-      </form>
-      {error && <p className="text-red-500">{error}</p>}
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h1>
+        <form onSubmit={handleEmailLogin} className="space-y-4">
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+          />
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+          />
+          <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">
+            Login
+          </Button>
+        </form>
+        {error && <p className="mt-4 text-center text-red-500">{error}</p>}
+      </div>
     </div>
   );
 }
