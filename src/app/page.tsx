@@ -1,9 +1,22 @@
-import { Button } from "@/components/ui/button";
+import { Header } from "@/components/header"
+import { Hero } from "@/components/hero"
+import { CompanyLogos } from "@/components/company-logos"
+import { Categories } from "@/components/categories"
+import { PostingCTA } from "@/components/posting-cta"
+import { FeaturedJobs } from "@/components/featured-jobs"
+import { LatestJobs } from "@/components/latest-jobs"
 
 export default function Home() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  );
+    <main className="min-h-screen bg-white">
+      <Header />
+      <Hero />
+      <CompanyLogos />
+      <Categories />
+      <PostingCTA />
+      <FeaturedJobs />
+      <LatestJobs />
+    </main>
+  )
 }
+
