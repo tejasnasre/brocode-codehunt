@@ -42,12 +42,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-blue-50 flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
+    <div className="bg-white flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
       <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
       <p className="text-center text-gray-500">
         Log in to your account to continue.
       </p>
-      <Card className="w-full bg-blue-50 max-w-md">
+      <Card className="w-full bg-white max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Login
@@ -92,7 +92,7 @@ export default function LoginPage() {
         <CardFooter className="flex flex-col justify-center">
           <p>
             Don&apos;t have an account?{" "}
-            <Link href="/auth/signup" className="text-blue-500 hover:underline">
+            <Link href="/auth/signup" className="text-white0 hover:underline">
               Sign Up
             </Link>
           </p>
@@ -100,7 +100,7 @@ export default function LoginPage() {
             Forgot your password?{" "}
             <Link
               href="/auth/forgot-password"
-              className="text-blue-500 hover:underline"
+              className="text-white0 hover:underline"
             >
               Reset it here
             </Link>

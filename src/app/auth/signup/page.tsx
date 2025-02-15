@@ -53,12 +53,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="bg-blue-50 flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
+    <div className="bg-white flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
       <h1 className="text-2xl font-bold text-center">Create Your Account</h1>
       <p className="text-center text-gray-500">
         Start your journey with us by creating a new account.
       </p>
-      <Card className="w-full bg-blue-50 max-w-md">
+      <Card className="w-full bg-white max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Sign Up
@@ -120,7 +120,7 @@ export default function SignupPage() {
         <CardFooter className="flex flex-col justify-center">
           <p>
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-blue-500 hover:underline">
+            <Link href="/auth/login" className="text-white0 hover:underline">
               Login
             </Link>
           </p>
@@ -128,7 +128,7 @@ export default function SignupPage() {
             Forgot your password?{" "}
             <Link
               href="/auth/forgot-password"
-              className="text-blue-500 hover:underline"
+              className="text-white0 hover:underline"
             >
               Reset it here
             </Link>
