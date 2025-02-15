@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/hero";
 import { CompanyLogos } from "@/components/company-logos";
 import { Categories } from "@/components/categories";
