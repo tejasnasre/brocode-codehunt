@@ -12,7 +12,7 @@ export default function JobseekerDashboard() {
     if (role !== "jobseeker") {
       router.replace("/dashboard");
     }
-  }, [role]);
+  }, [role, router]);
 
   return <h1>Jobseeker Dashboard</h1>;
 }

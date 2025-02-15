@@ -14,7 +14,7 @@ export default function DashboardPage() {
     } else if (role === "jobseeker") {
       router.replace("/dashboard/jobseeker");
     }
-  }, [role]);
+  }, [role, router]);
 
   return <p>Redirecting to the appropriate dashboard...</p>;
 }

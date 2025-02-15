@@ -28,10 +28,16 @@ export function Header() {
         <div className="flex items-center gap-4">
           {user ? (
             <>
-              <Link href="/dashboard">
+              <Link href={role === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker"}>
                 <Button variant="ghost">Dashboard</Button>
               </Link>
-              <Button onClick={logout} variant="destructive">
+              <Button
+                onClick={async () => {
+                  await logout();
+                  window.location.href = "/"; // Ensure full refresh on logout
+                }}
+                variant="destructive"
+              >
                 Logout
               </Button>
             </>

@@ -12,7 +12,7 @@ export default function RecruiterDashboard() {
     if (role !== "recruiter") {
       router.replace("/dashboard");
     }
-  }, [role]);
+  }, [role, router]);
 
   return <h1>Recruiter Dashboard</h1>;
 }
