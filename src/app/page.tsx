@@ -1,9 +1,10 @@
 import { Hero } from "@/components/hero";
-import { CompanyLogos } from "@/components/company-logos";
+// import { CompanyLogos } from "@/components/company-logos";
 import { Categories } from "@/components/categories";
-import { PostingCTA } from "@/components/posting-cta";
 import { FeaturedJobs } from "@/components/featured-jobs";
 import { LatestJobs } from "@/components/latest-jobs";
+import { PostingCTA } from "@/components/posting-cta";
+import { CompanyLogos } from "@/components/ui/company-logos";
 
 export default function Home() {
   return (
