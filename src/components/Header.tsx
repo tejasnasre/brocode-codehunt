@@ -20,6 +20,7 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
+
           <Link href="/auth/login">
           <Button variant="ghost" size="lg">
             Login
@@ -28,6 +29,41 @@ export function Header() {
          <Link href="/auth/signup"> 
           <Button size="lg">Sign Up</Button>
           </Link>
+          {user ? (
+            <>
+              <Link
+                href={
+                  role === "recruiter"
+                    ? "/dashboard/recruiter"
+                    : "/dashboard/jobseeker"
+                }
+              >
+                <Button variant="ghost">Dashboard</Button>
+              </Link>
+              <Link href={role === "jobseeker" ? "/dashboard/jobseeker/profile" : "/dashboard/recruiter/profile"}>
+  <Button variant="ghost">Profile</Button>
+</Link>
+
+              <Button
+                onClick={async () => {
+                  await logout();
+                  window.location.href = "/"; // Ensure full refresh on logout
+                }}
+                variant="destructive"
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/auth/login">
+                <Button variant="ghost">Login</Button>
+              </Link>
+              <Link href="/auth/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
