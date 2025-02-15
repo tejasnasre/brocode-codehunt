@@ -2,7 +2,6 @@
 import { SearchBar } from "@/components/browsecompanies/SearchBar";
 import { CompanyCard } from "@/components/browsecompanies/CompanyCard";
 import { CategoryGrid } from "@/components/browsecompanies/CategoryGrid";
-import { Footer } from "@/components/Footer";
 import { recommendedCompanies, categories } from "../data/mockData";
 import { Header } from "@/components/Header";
 
@@ -37,8 +36,6 @@ export default function HomePage() {
           <CategoryGrid categories={categories} />
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

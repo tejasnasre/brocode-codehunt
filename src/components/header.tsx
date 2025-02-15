@@ -10,22 +10,31 @@ export function Header() {
             <div className="w-8 h-8 bg-primary rounded-lg" />
             <span className="text-xl font-semibold">JobHuntly</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-            <Link href="/jobs" className="text-sm text-muted-foreground hover:text-primary">
+          <nav
+            className="hidden md:flex items-center gap-6"
+            aria-label="Main navigation"
+          >
+            <Link
+              href="/jobs"
+              className="text-sm text-muted-foreground hover:text-primary"
+            >
               Find Jobs
             </Link>
-            <Link href="/companies" className="text-sm text-muted-foreground hover:text-primary">
+            <Link
+              href="/companies"
+              className="text-sm text-muted-foreground hover:text-primary"
+            >
               Browse Companies
             </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/login">
+          <Link href="/auth/login">
             <Button variant="ghost" size="sm">
               Login
             </Button>
           </Link>
-          <Link href="/signup">
+          <Link href="/auth/signup">
             <Button size="sm">Sign Up</Button>
           </Link>
         </div>
