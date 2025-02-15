@@ -1,5 +1,7 @@
 
 import type { Metadata } from "next";
+import { Geist_Mono } from "next/font/google";
+import Footer from "../components/Footer";
 import "./globals.css";
 import type React from "react"
 
@@ -21,6 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
+      <body className={`${geistMono.variable} antialiased`}>
+        {children}
+        <Footer />
+      </body>
+
       <body className={inter.className}>{children}</body>
     </html>
   )
