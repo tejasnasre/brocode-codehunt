@@ -16,22 +16,35 @@ export function Header() {
             <span className="text-xl font-semibold">JobHuntly</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/findjobs" className="text-primary">
-              Find Jobs
-            </Link>
-            <Link href="/add-job" className="text-muted-foreground">
-              Add Jobs
-            </Link>
-            <Link href="/companies" className="text-muted-foreground">
-              Browse Companies
-            </Link>
+            {role === "jobseeker" && (
+              <Link href="/findjobs" className="text-primary">
+                Find Jobs
+              </Link>
+            )}
+
+            {role === "recruiter" && (
+              <Link href="/add-job" className="text-muted-foreground">
+                Add Jobs
+              </Link>
+            )}
+            {role === "jobseeker" && (
+              <Link href="/companies" className="text-muted-foreground">
+                Browse Companies
+              </Link>
+            )}
           </nav>
         </div>
 
         <div className="flex items-center gap-4">
           {user ? (
             <>
-              <Link href={role === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker"}>
+              <Link
+                href={
+                  role === "recruiter"
+                    ? "/dashboard/recruiter"
+                    : "/dashboard/jobseeker"
+                }
+              >
                 <Button variant="ghost">Dashboard</Button>
               </Link>
               <Button
