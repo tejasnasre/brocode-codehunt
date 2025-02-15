@@ -1,25 +1,41 @@
-import { Heart, Building2, GraduationCap, Users, Coffee, Train, Gift, Wallet } from "lucide-react"
-import { JobHeader } from "@/components/job-header"
-import { Tag } from "@/components/ui/tag"
-import { BenefitsCard } from "@/components/benefits-card"
-import { Card } from "@/components/ui/card"
-import {Header} from "@/components/header"
- 
+import {
+  Heart,
+  Building2,
+  GraduationCap,
+  Users,
+  Coffee,
+  Train,
+  Gift,
+  Wallet,
+} from "lucide-react";
+import { JobHeader } from "@/components/job-header";
+import { Tag } from "@/components/ui/tag";
+import { BenefitsCard } from "@/components/benefits-card";
+import { Card } from "@/components/ui/card";
+import { Header } from "@/components/Header";
+
 export default function JobPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto py-6 mt-20">
         <Card>
-          <JobHeader title="Social Media Assistant" company="Stripe" location="Paris, France" type="Full-Time" />
+          <JobHeader
+            title="Social Media Assistant"
+            company="Stripe"
+            location="Paris, France"
+            type="Full-Time"
+          />
 
           <div className="p-6 grid gap-8">
             <section>
               <h2 className="text-xl font-semibold mb-4">Description</h2>
               <p className="text-muted-foreground">
-                Stripe is looking for Social Media Marketing expert to help manage our online networks. You will be
-                responsible for monitoring our social media channels, creating content, finding effective ways to engage
-                the community and working with our team to engage on our channels.
+                Stripe is looking for Social Media Marketing expert to help
+                manage our online networks. You will be responsible for
+                monitoring our social media channels, creating content, finding
+                effective ways to engage the community and working with our team
+                to engage on our channels.
               </p>
             </section>
 
@@ -82,6 +98,5 @@ export default function JobPage() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
-
