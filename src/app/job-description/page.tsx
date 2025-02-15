@@ -3,7 +3,7 @@ import { JobHeader } from "@/components/job-header"
 import { Tag } from "@/components/ui/tag"
 import { BenefitsCard } from "@/components/benefits-card"
 import { Card } from "@/components/ui/card"
-import {Header} from "@/components/header"
+import {Header} from "@/components/Header"
  
 export default function JobPage() {
   return (
