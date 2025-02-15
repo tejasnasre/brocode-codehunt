@@ -2,6 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Building2, MapPin, Timer } from "lucide-react";
+import Image from "next/image";
 
 interface JobCardProps {
   id: string;
@@ -30,7 +31,9 @@ export function JobCard({
   return (
     <Card className="p-6 hover:shadow-lg transition-shadow">
       <div className="flex gap-4">
-        <img
+        <Image
+          width={48}
+          height={48}
           src={logo || "https://via.placeholder.com/48"}
           alt={company}
           className="w-12 h-12 rounded-lg object-contain"
