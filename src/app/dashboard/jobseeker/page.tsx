@@ -121,7 +121,8 @@ export default function JobSeekerDashboard() {
         </>
       ) : (
         <div className="text-center text-gray-500 text-lg mt-8">
-          No profile data found.
+          No profile data found. 
+          <a href="/dashboard/jobseeker/profile" className="text-blue-600">complete the profile</a>
         </div>
       )}
     </div>

@@ -31,16 +31,19 @@ export default function SignupPage() {
         data: { role }, // Store role in user metadata
       },
     });
-
+  
     if (error) {
       setError(error.message);
     } else {
       const userRole = data.user?.user_metadata?.role || "jobseeker"; // Default role if not set
       setUser(data.user, userRole); // Store user and role in Zustand
       toast({ title: "Successfully signed up", description: "Account created successfully" });
-      router.push("/dashboard/profile");
+  
+      // Redirect based on role
+      router.push(userRole === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker");
     }
   };
+  
 
   return (
     <div className="bg-white flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
