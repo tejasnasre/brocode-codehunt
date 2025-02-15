@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/store/authStore";
 
 export function Header() {
+  const { user, role, logout } = useAuthStore();
+
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -19,13 +24,27 @@ export function Header() {
             </Link>
           </nav>
         </div>
+
         <div className="flex items-center gap-4">
-          <Link href='/auth/login'>
-          <Button variant="ghost">Login</Button>
-          </Link>
-          <Link href='/auth/signup'>
-          <Button>Sign Up</Button>
-          </Link>
+          {user ? (
+            <>
+              <Link href="/dashboard">
+                <Button variant="ghost">Dashboard</Button>
+              </Link>
+              <Button onClick={logout} variant="destructive">
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/auth/login">
+                <Button variant="ghost">Login</Button>
+              </Link>
+              <Link href="/auth/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

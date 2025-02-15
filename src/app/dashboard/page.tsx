@@ -1,7 +1,20 @@
-import React from "react";
+"use client";
 
-function page() {
-  return <div>page</div>;
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
+
+export default function DashboardPage() {
+  const router = useRouter();
+  const { role } = useAuthStore();
+
+  useEffect(() => {
+    if (role === "recruiter") {
+      router.replace("/dashboard/recruiter");
+    } else if (role === "jobseeker") {
+      router.replace("/dashboard/jobseeker");
+    }
+  }, [role]);
+
+  return <p>Redirecting to the appropriate dashboard...</p>;
 }
-
-export default page;
