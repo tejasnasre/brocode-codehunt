@@ -80,7 +80,8 @@ export default function SignupPage() {
               {role && <p className="text-gray-500">Selected Role: {role}</p>}
             </div>
 
-            <Button type="submit" className="w-full">Sign Up with Email</Button>
+            <Button type="submit"className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg hover:shadow-gray-900/10"
+            >Sign Up with Email</Button>
           </form>
 
           {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
