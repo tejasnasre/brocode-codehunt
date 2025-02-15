@@ -40,7 +40,7 @@ export default function SignupPage() {
       toast({ title: "Successfully signed up", description: "Account created successfully" });
   
       // Redirect based on role
-      router.push(userRole === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker");
+      router.push(userRole === "recruiter" ? "/dashboard/recruiter/profile" : "/dashboard/jobseeker/profile");
     }
   };
   
