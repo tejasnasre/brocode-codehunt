@@ -19,23 +19,34 @@ export default function LoginPage() {
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+  
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
+  
     if (error) {
       setError(error.message);
     } else {
+
       const userRole = data.user?.user_metadata?.role || "jobseeker";
       setUser(data.user, userRole);
 
-      toast({ title: "Login Successful", description: "Redirecting..." });
 
-      router.push("/dashboard");
+      const userRole = data.user?.user_metadata?.role || "jobseeker"; // Default to jobseeker
+      setUser(data.user, userRole); // Store in Zustand
+  
+
+      toast({ title: "Login Successful", description: "Redirecting..." });
+  
+      // Redirect based on role
+      const redirectPath =
+        userRole === "recruiter" ? "/dashboard/recruiter/profile" : "/dashboard/jobseeker/profile";
+  
+      router.push(redirectPath);
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
