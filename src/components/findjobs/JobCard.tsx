@@ -1,16 +1,19 @@
+import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Card } from "@/components/ui/card";
+import { Building2, MapPin, Timer } from "lucide-react";
 
 interface JobCardProps {
+  id: string;
   title: string;
   company: string;
   location: string;
   type: string;
   tags: string[];
   logo: string;
-  applied: number;
-  capacity: number;
+  salaryMin: number;
+  salaryMax: number;
+  createdAt: Date;
 }
 
 export function JobCard({
@@ -20,28 +23,51 @@ export function JobCard({
   type,
   tags,
   logo,
-  applied,
-  capacity,
+  salaryMin,
+  salaryMax,
+  createdAt,
 }: JobCardProps) {
   return (
-    <div className="border rounded-lg p-6 flex items-start justify-between gap-4">
+    <Card className="p-6 hover:shadow-lg transition-shadow">
       <div className="flex gap-4">
-        <div className="w-12 h-12 rounded-lg bg-gray-100 flex-shrink-0">
-          <Image
-            width={48}
-            height={48}
-            src={logo || "/placeholder.svg"}
-            alt={company}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div>
-          <h3 className="font-semibold text-lg">{title}</h3>
-          <p className="text-muted-foreground">
-            {company} • {location}
-          </p>
-          <div className="flex gap-2 mt-2">
+        <img
+          src={logo || "https://via.placeholder.com/48"}
+          alt={company}
+          className="w-12 h-12 rounded-lg object-contain"
+          onError={(e) => {
+            e.currentTarget.src = "https://via.placeholder.com/48";
+          }}
+        />
+        <div className="flex-1">
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-lg font-semibold">{title}</h3>
+              <div className="flex items-center gap-4 text-muted-foreground mt-1">
+                <div className="flex items-center gap-1">
+                  <Building2 className="w-4 h-4" />
+                  {company}
+                </div>
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  {location}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Timer className="w-4 h-4" />
+                  {formatDistanceToNow(createdAt, { addSuffix: true })}
+                </div>
+              </div>
+            </div>
             <Badge variant="secondary">{type}</Badge>
+          </div>
+          <div className="mt-4">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span className="font-medium">
+                ${salaryMin.toLocaleString()} - ${salaryMax.toLocaleString()}
+              </span>
+              <span>per year</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 mt-4">
             {tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 {tag}
@@ -50,12 +76,6 @@ export function JobCard({
           </div>
         </div>
       </div>
-      <div className="text-right">
-        <Button>Apply</Button>
-        <p className="text-sm text-muted-foreground mt-2">
-          {applied} applied of {capacity} capacity
-        </p>
-      </div>
-    </div>
+    </Card>
   );
 }

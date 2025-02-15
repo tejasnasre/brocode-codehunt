@@ -16,8 +16,11 @@ export function Header() {
             <span className="text-xl font-semibold">JobHuntly</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/jobs" className="text-primary">
+            <Link href="/findjobs" className="text-primary">
               Find Jobs
+            </Link>
+            <Link href="/add-job" className="text-muted-foreground">
+              Add Jobs
             </Link>
             <Link href="/companies" className="text-muted-foreground">
               Browse Companies
