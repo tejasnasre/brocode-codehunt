@@ -13,16 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import supabase from "../../../lib/supabase";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import supabase from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
-import { useAuthStore } from "@/store/authStore"; // Import Zustand store
+import { useAuthStore } from "@/store/authStore";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -32,73 +25,104 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { role }, // Store role in user metadata
-      },
-    });
-  
-    if (error) {
-      setError(error.message);
-    } else {
-      const userRole = data.user?.user_metadata?.role || "jobseeker"; // Default role if not set
-      setUser(data.user, userRole); // Store user and role in Zustand
-      toast({ title: "Successfully signed up", description: "Account created successfully" });
-      // Redirect based on role
-      router.push(userRole === "recruiter" ? "/dashboard/recruiter/profile" : "/dashboard/jobseeker/profile");
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { role },
+        },
+      });
+
+      if (error) {
+        setError(error.message);
+      } else {
+        const userRole = data.user?.user_metadata?.role || "jobseeker";
+        setUser(data.user, userRole);
+        toast({ title: "Successfully signed up", description: "Account created successfully" });
+        router.push(userRole === "recruiter" ? "/dashboard/recruiter/profile" : "/dashboard/jobseeker/profile");
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
-  
   return (
-
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <Card className="w-full max-w-md shadow-lg rounded-2xl bg-white p-6">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-indigo-600">Sign Up</CardTitle>
-          <p className="text-gray-500 mt-2">Start your journey with us!</p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleEmailSignup} className="space-y-5">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        <div className="bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-8">
+          <div className="mb-8 text-center">
+            <h1 className="text-2xl font-bold text-gray-800">Create Your Account</h1>
+            <p className="text-gray-600">Join JobHuntly and start your journey</p>
+          </div>
+          <form onSubmit={handleEmailSignup} className="space-y-6">
             <div>
-              <Label htmlFor="email">Email <span className="text-red-500">*</span></Label>
-              <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required className="focus:ring-indigo-500" />
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+                className="mt-1 border-2 border-black"
+              />
             </div>
             <div>
-              <Label htmlFor="password">Password <span className="text-red-500">*</span></Label>
-              <Input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required className="focus:ring-indigo-500" />
-
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                className="mt-1 border-2 border-black"
+              />
             </div>
             <div>
-              <Label htmlFor="role">Role <span className="text-red-500">*</span></Label>
+              <Label htmlFor="role">Role</Label>
               <Select onValueChange={(value) => setRole(value)}>
-                <SelectTrigger className="w-full focus:ring-indigo-500">
-                  <SelectValue placeholder="Select Role" />
+                <SelectTrigger className="w-full mt-1 border-2 border-black">
+                  <SelectValue placeholder="Select your role" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="recruiter">Recruiter</SelectItem>
                   <SelectItem value="jobseeker">Job Seeker</SelectItem>
                 </SelectContent>
               </Select>
-              {role && <p className="text-gray-500 text-sm mt-1">Selected Role: {role}</p>}
             </div>
-
-            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 p-5 rounded-xl shadow-md transition">Sign Up</Button>
-
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none transition-all"
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing up..." : "Sign Up"}
+            </Button>
           </form>
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-        </CardContent>
-
-        <CardFooter className="text-center">
-          <p>Already have an account? <Link href="/auth/login" className="text-indigo-600 hover:underline">Login</Link></p>
-
-        </CardFooter>
-      </Card>
+          {error && (
+            <p className="mt-4 text-center text-red-500 bg-red-100 p-2 rounded border border-red-500">
+              {error}
+            </p>
+          )}
+          <div className="mt-6 text-center">
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <Link href="/auth/login" className="text-primary hover:underline font-semibold">
+                Log in
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

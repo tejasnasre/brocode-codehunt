@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JobHuntly - Discover More Than 5000+ Jobs",
-  description: "Find your next career opportunity on JobHuntly",
+  title: "gethired. - Discover More Than 5000+ Jobs",
+  description: "Find your next career opportunity on gethired.",
 };
 
 export default function RootLayout({
