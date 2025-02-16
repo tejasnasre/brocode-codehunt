@@ -26,6 +26,13 @@ export function Header() {
                 Add Jobs
               </Link>
             )}
+
+            {role === "jobseeker" && (
+              <Link href="/companies" className="text-muted-foreground font-semibold hover:underline">
+                Browse Companies
+              </Link>
+            )}
+
           </nav>
         </div>
 
@@ -41,6 +48,11 @@ export function Header() {
               >
                 <Button variant="ghost">Dashboard</Button>
               </Link>
+
+              <Link href={role === "jobseeker" ? "/dashboard/jobseeker/profile" : "/dashboard/recruiter/profile"}>
+                <Button variant="outline" className="font-semibold border-2 border-black hover:bg-primary hover:text-white transition-colors">Profile</Button>
+              </Link>
+
               <Link
                 href={
                   role === "jobseeker"
