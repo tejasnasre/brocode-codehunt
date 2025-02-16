@@ -26,23 +26,31 @@ export function Header() {
                 Add Jobs
               </Link>
             )}
-            {role === "jobseeker" && (
-              <Link href="/companies" className="text-muted-foreground font-semibold hover:underline">
-                Browse Companies
-              </Link>
-            )}
           </nav>
         </div>
 
         <div className="flex items-center gap-4">
           {user ? (
             <>
-              <Link href={role === "recruiter" ? "/dashboard/recruiter" : "/dashboard/jobseeker"}>
-                <Button variant="outline" className="font-semibold border-2 border-black hover:bg-primary hover:text-white transition-colors">Dashboard</Button>
+              <Link
+                href={
+                  role === "recruiter"
+                    ? "/dashboard/recruiter"
+                    : "/dashboard/jobseeker"
+                }
+              >
+                <Button variant="ghost">Dashboard</Button>
               </Link>
-              <Link href={role === "jobseeker" ? "/dashboard/jobseeker/profile" : "/dashboard/recruiter/profile"}>
-                <Button variant="outline" className="font-semibold border-2 border-black hover:bg-primary hover:text-white transition-colors">Profile</Button>
+              <Link
+                href={
+                  role === "jobseeker"
+                    ? "/dashboard/jobseeker/profile"
+                    : "/dashboard/recruiter/profile"
+                }
+              >
+                <Button variant="ghost">Profile</Button>
               </Link>
+
               <Button
                 onClick={async () => {
                   await logout()
