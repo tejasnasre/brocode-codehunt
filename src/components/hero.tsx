@@ -1,10 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { MapPin, Search } from "lucide-react";
+
 
 export function Hero() {
+  function handlePopularSearch(job: string): void {
+    console.log(`Searching for popular job: ${job}`);
+    // Implement the search functionality here
+    // For example, you could update the search input fields and trigger a search
+  }
+
   return (
     <section className="pt-24 pb-16 flex justify-center items-center min-h-screen">
       <div className="container px-4 flex flex-col md:flex-row items-center">
