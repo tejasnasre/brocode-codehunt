@@ -1,8 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
+
 import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { MapPin, Search } from "lucide-react";
+
 
 export function Hero() {
   return (
+
     <section className="pt-32 pb-16">
       <div className="container px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -23,6 +31,22 @@ export function Hero() {
             <p className="text-lg text-muted-foreground mb-8">
               Great platform for job seekers searching for new career heights and passionate about startups.
             </p>
+
+    <section className="pt-24 pb-16 flex justify-center items-center min-h-screen">
+      <div className="container px-4 flex flex-col md:flex-row items-center">
+        <div className="max-w-3xl md:w-1/2">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            Discover
+            <br />
+            more than
+            <br />
+            <span className="text-primary">5000+ Jobs</span>
+          </h1>
+          <p className="mt-4 text-lg text-muted-foreground max-w-xl">
+            Great platform for job seekers searching for new career heights and
+            passionate about startups.
+          </p>
+
 
             {/* Uncomment below if needed */}
             {/* Search Form */}
@@ -45,10 +69,19 @@ export function Hero() {
               <span>Popular:</span>
               <div className="space-x-2">
                 {["UI Designer", "UX Researcher", "Android", "Admin"].map((job) => (
+
+          {/* Popular Searches */}
+          <div className="mt-4 flex gap-2 text-sm text-muted-foreground">
+            <span>Popular:</span>
+            <div className="space-x-2">
+              {["UI Designer", "UX Researcher", "Android", "Admin"].map(
+                (job) => (
+
                   <button
                     key={job}
                     type="button"
                     onClick={() => handlePopularSearch(job)}
+
                     className="hover:text-primary font-medium"
                   >
                     {job},
@@ -56,8 +89,24 @@ export function Hero() {
                 ))}
               </div>
             </div> */}
+
+                    className="hover:text-primary"
+                  >
+                    {job},
+                  </button>
+                )
+              )}
+            </div>
+
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"></div>
+        </div>
+        <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+          <img
+            src="/assets/asset 2.png"
+            alt="Job search illustration"
+            className="w-3/4 h-auto"
+          />
         </div>
       </div>
     </section>
