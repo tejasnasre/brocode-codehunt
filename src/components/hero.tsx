@@ -11,7 +11,10 @@ export function Hero() {
   };
 
   return (
-    <section className="pt-24 pb-16 flex justify-center items-center min-h-screen">
+    <section
+      className="pt-24 pb-16 flex justify-center items-center min-h-screen"
+      style={{ marginTop: "-80px" }}
+    >
       <div className="container px-4 flex flex-col md:flex-row items-center">
         <div className="max-w-3xl md:w-1/2">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
