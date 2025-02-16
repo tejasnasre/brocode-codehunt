@@ -20,6 +20,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import supabase from "@/lib/supabase";
 import { formatDistanceToNow } from "date-fns";
 import ATSResumeChecker from "@/components/CheckResume";
+import { useAuthStore } from "@/store/authStore";
+import { useToast } from "@/hooks/use-toast";
 
 interface JobDetails {
   id: string;
@@ -35,6 +37,8 @@ interface JobDetails {
 }
 
 export default function JobDetailsPage() {
+  const { toast } = useToast();
+  const { user } = useAuthStore();
   const params = useParams();
   const [job, setJob] = useState<JobDetails | null>(null);
   const [loading, setLoading] = useState(true);
@@ -76,6 +80,52 @@ export default function JobDetailsPage() {
         </p>
       </div>
     );
+  }
+
+  async function jobapply() {
+    if (!user) {
+      console.error("User is not logged in");
+      return;
+    }
+
+    if (!job) {
+      console.error("Job details are not available");
+      return;
+    }
+
+    // Check if the user has already applied for this job
+    const { data: existingApplication, error: fetchError } = await supabase
+      .from("application")
+      .select("id, status")
+      .eq("user_id", user.id)
+      .eq("job_id", job.id)
+      .single(); // Use .single() to fetch a single row, since each user should only apply once for a job
+
+    if (fetchError) {
+      console.error("Error checking existing application:", fetchError);
+      return;
+    }
+
+    if (existingApplication) {
+      toast({
+        title: "Application already exists",
+        description: "You have already applied for this job.",
+      });
+
+      return;
+    }
+
+    // Proceed to insert the new application if no existing application is found
+    const { data, error } = await supabase
+      .from("application")
+      .insert([{ user_id: user.id, job_id: job.id, status: "applied" }])
+      .select();
+
+    if (error) {
+      console.error("Error applying for job:", error);
+    } else {
+      console.log("Job application successful:", data);
+    }
   }
 
   return (
@@ -134,6 +184,7 @@ export default function JobDetailsPage() {
                   <Button
                     size="lg"
                     className="bg-white text-black border-2 border-white hover:bg-gray-200 transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                    onClick={jobapply}
                   >
                     Apply Now
                   </Button>
@@ -210,7 +261,10 @@ export default function JobDetailsPage() {
                 Ready to apply for this position? Click below to start your
                 application.
               </p>
-              <Button className="w-full text-lg bg-black text-white border-2 border-black hover:bg-gray-800 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <Button
+                onClick={jobapply}
+                className="w-full text-lg bg-black text-white border-2 border-black hover:bg-gray-800 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+              >
                 Apply Now
               </Button>
             </Card>
