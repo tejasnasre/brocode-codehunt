@@ -1,7 +1,27 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export function Hero() {
+interface SearchFilters {
+  jobTitle: string;
+  jobLocation: string;
+}
+
+export function Hero({
+  onSearch,
+}: {
+  onSearch: (filters: SearchFilters) => void;
+}) {
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobLocation, setJobLocation] = useState("");
+
+  const handleSearch = () => {
+    onSearch({
+      jobTitle,
+      jobLocation,
+    });
+  };
+
   return (
     <div className="bg-background py-16 text-center">
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -20,13 +40,19 @@ export function Hero() {
             type="text"
             placeholder="Job title or keyword"
             className="border-0 focus-visible:ring-0"
+            value={jobTitle}
+            onChange={(e) => setJobTitle(e.target.value)}
           />
           <Input
             type="text"
-            placeholder="Florence, Italy"
+            placeholder="Location"
             className="border-0 focus-visible:ring-0"
+            value={jobLocation}
+            onChange={(e) => setJobLocation(e.target.value)}
           />
-          <Button size="lg">Search</Button>
+          <Button size="lg" onClick={handleSearch}>
+            Search
+          </Button>
         </div>
         <div className="mt-4 text-sm text-muted-foreground">
           Popular: UI Designer, UX Researcher, Android, Admin
