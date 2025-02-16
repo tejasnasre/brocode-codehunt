@@ -35,7 +35,7 @@ export default function LoginPage() {
   
       // Redirect based on role
       const redirectPath =
-        userRole === "recruiter" ? "/dashboard/recruiter/profile" : "/dashboard/jobseeker/profile";
+        userRole === "recruiter" ? "/dashboard/recruiter/" : "/dashboard/jobseeker/profile";
   
       router.push(redirectPath);
     }
@@ -53,7 +53,7 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-4 py-2 border border-gray-300 p-6 rounded-lg focus:ring-2 focus:ring-indigo-500"
           />
           <Input
             type="password"
@@ -61,9 +61,9 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-4 py-2 border border-gray-300 p-6 rounded-lg focus:ring-2 focus:ring-indigo-500"
           />
-          <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">
+          <Button type="submit" className="w-full  bg-indigo-600 hover:bg-indigo-700 text-white py-5 rounded-lg">
             Login
           </Button>
         </form>

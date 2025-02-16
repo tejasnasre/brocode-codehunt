@@ -44,52 +44,42 @@ export default function SignupPage() {
     }
   };
   
-
   return (
-    <div className="bg-white flex flex-col items-center justify-center p-4 gap-4 min-h-screen pt-20">
-      <h1 className="text-2xl font-bold text-center">Create Your Account</h1>
-      <p className="text-center text-gray-500">Start your journey with us by creating a new account.</p>
-      <Card className="w-full bg-white max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Sign Up</CardTitle>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <Card className="w-full max-w-md shadow-lg rounded-2xl bg-white p-6">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl font-bold text-indigo-600">Sign Up</CardTitle>
+          <p className="text-gray-500 mt-2">Start your journey with us!</p>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleEmailSignup} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">
-                Email <span className="text-red-500">*</span>
-              </Label>
-              <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <form onSubmit={handleEmailSignup} className="space-y-5">
+            <div>
+              <Label htmlFor="email">Email <span className="text-red-500">*</span></Label>
+              <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required className="focus:ring-indigo-500" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">
-                Password <span className="text-red-500">*</span>
-              </Label>
-              <Input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <div>
+              <Label htmlFor="password">Password <span className="text-red-500">*</span></Label>
+              <Input id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required className="focus:ring-indigo-500" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="role">
-                Role <span className="text-red-500">*</span>
-              </Label>
+            <div>
+              <Label htmlFor="role">Role <span className="text-red-500">*</span></Label>
               <Select onValueChange={(value) => setRole(value)}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Role" />
+                <SelectTrigger className="w-full focus:ring-indigo-500">
+                  <SelectValue placeholder="Select Role" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="recruiter">Recruiter</SelectItem>
                   <SelectItem value="jobseeker">Job Seeker</SelectItem>
                 </SelectContent>
               </Select>
-              {role && <p className="text-gray-500">Selected Role: {role}</p>}
+              {role && <p className="text-gray-500 text-sm mt-1">Selected Role: {role}</p>}
             </div>
-
-            <Button type="submit" className="w-full">Sign Up with Email</Button>
+            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 p-5 rounded-xl shadow-md transition">Sign Up</Button>
           </form>
-
-          {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
         </CardContent>
-        <CardFooter className="flex flex-col justify-center">
-          <p>Already have an account? <Link href="/auth/login" className="text-white0 hover:underline">Login</Link></p>
+        <CardFooter className="text-center">
+          <p>Already have an account? <Link href="/auth/login" className="text-indigo-600 hover:underline">Login</Link></p>
         </CardFooter>
       </Card>
     </div>
