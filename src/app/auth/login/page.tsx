@@ -19,33 +19,38 @@ export default function LoginPage() {
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-  
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-  
+
     if (error) {
       setError(error.message);
     } else {
       const userRole = data.user?.user_metadata?.role || "jobseeker"; // Default to jobseeker
       setUser(data.user, userRole); // Store in Zustand
-  
+
       toast({ title: "Login Successful", description: "Redirecting..." });
-  
+
       // Redirect based on role
       const redirectPath =
-        userRole === "recruiter" ? "/dashboard/recruiter/" : "/dashboard/jobseeker/profile";
-  
+
+        userRole === "recruiter"
+          ? "/dashboard/recruiter"
+          : "/dashboard/jobseeker/profile";
+
+
       router.push(redirectPath);
     }
   };
-  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h1>
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Login
+        </h1>
         <form onSubmit={handleEmailLogin} className="space-y-4">
           <Input
             type="email"
@@ -63,7 +68,11 @@ export default function LoginPage() {
             required
             className="w-full px-4 py-2 border border-gray-300 p-6 rounded-lg focus:ring-2 focus:ring-indigo-500"
           />
-          <Button type="submit" className="w-full  bg-indigo-600 hover:bg-indigo-700 text-white py-5 rounded-lg">
+
+          <Button
+            type="submit"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg"
+          >
             Login
           </Button>
         </form>

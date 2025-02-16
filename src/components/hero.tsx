@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { MapPin, Search } from "lucide-react";
 
 export function Hero() {
   const handlePopularSearch = (query: string) => {
@@ -10,9 +11,9 @@ export function Hero() {
   };
 
   return (
-    <section className="pt-32 pb-16">
-      <div className="container px-4">
-        <div className="max-w-3xl">
+    <section className="pt-24 pb-16 flex justify-center items-center min-h-screen">
+      <div className="container px-4 flex flex-col md:flex-row items-center">
+        <div className="max-w-3xl md:w-1/2">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Discover
             <br />
@@ -21,7 +22,8 @@ export function Hero() {
             <span className="text-primary">5000+ Jobs</span>
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl">
-            Great platform for job seekers searching for new career heights and passionate about startups.
+            Great platform for job seekers searching for new career heights and
+            passionate about startups.
           </p>
 
           {/* Search Form */}
@@ -43,18 +45,27 @@ export function Hero() {
           <div className="mt-4 flex gap-2 text-sm text-muted-foreground">
             <span>Popular:</span>
             <div className="space-x-2">
-              {["UI Designer", "UX Researcher", "Android", "Admin"].map((job) => (
-                <button
-                  key={job}
-                  type="button"
-                  onClick={() => handlePopularSearch(job)}
-                  className="hover:text-primary"
-                >
-                  {job},
-                </button>
-              ))}
+              {["UI Designer", "UX Researcher", "Android", "Admin"].map(
+                (job) => (
+                  <button
+                    key={job}
+                    type="button"
+                    onClick={() => handlePopularSearch(job)}
+                    className="hover:text-primary"
+                  >
+                    {job},
+                  </button>
+                )
+              )}
             </div>
           </div>
+        </div>
+        <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+          <img
+            src="/assets/asset 2.png"
+            alt="Job search illustration"
+            className="w-3/4 h-auto"
+          />
         </div>
       </div>
     </section>

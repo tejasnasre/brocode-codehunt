@@ -12,7 +12,7 @@ export default function DashboardPage() {
     if (role === "recruiter") {
       router.replace("/dashboard/recruiter");
     } else if (role === "jobseeker") {
-      router.replace("/dashboard/jobseeker");
+      router.replace("/dashboard/jobseeker/profile");
     }
   }, [role, router]);
 
