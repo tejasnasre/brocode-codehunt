@@ -1,15 +1,17 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import supabase from "@/lib/supabase"
-import { useAuthStore } from "@/store/authStore"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import supabase from "@/lib/supabase";
+import { useAuthStore } from "@/store/authStore";
 
 export default function RecruiterForm() {
-  const router = useRouter()
-  const { user } = useAuthStore() as { user: { id: string; email: string } | null }
+  const router = useRouter();
+  const { user } = useAuthStore() as {
+    user: { id: string; email: string } | null;
+  };
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -17,22 +19,24 @@ export default function RecruiterForm() {
     location: "",
     employment_type: "",
     remote_options: "",
-  })
+  });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!user) {
-      alert("User not authenticated!")
-      return
+      alert("User not authenticated!");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     const { error } = await supabase.from("recruiters").insert([
       {
@@ -44,23 +48,25 @@ export default function RecruiterForm() {
         employment_type: formData.employment_type,
         remote_options: formData.remote_options,
       },
-    ])
+    ]);
 
-    setLoading(false)
+    setLoading(false);
 
     if (error) {
-      console.error("Error inserting data:", error.message)
-      alert("Error inserting data: " + error.message)
+      console.error("Error inserting data:", error.message);
+      alert("Error inserting data: " + error.message);
     } else {
-      alert("Recruiter profile created successfully!")
-      router.push("/recruiter/dashboard")
+      alert("Recruiter profile created successfully!");
+      router.push("/dashboard/recruiter");
     }
-  }
+  };
 
   return (
     <div className="max-w-2xl mx-auto p-8 bg-indigo-200 my-10">
       <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Recruiter Registration</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          Recruiter Registration
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
@@ -117,7 +123,9 @@ export default function RecruiterForm() {
           </div>
           <button
             type="submit"
-            className={`w-full p-3 text-xl font-bold text-white bg-indigo-500 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`w-full p-3 text-xl font-bold text-white bg-indigo-500 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             disabled={loading}
           >
             {loading ? "Submitting..." : "Register"}
@@ -125,6 +133,5 @@ export default function RecruiterForm() {
         </form>
       </div>
     </div>
-  )
+  );
 }
-
