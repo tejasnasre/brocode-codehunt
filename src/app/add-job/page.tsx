@@ -113,42 +113,15 @@ export default function AddJobPage() {
         return;
       }
 
-      // Get user role from profiles table
-      const { data: profile, error: profileError } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single();
-
-      if (profileError) {
-        console.error("Profile fetch error:", profileError);
-        toast({
-          title: "Error",
-          description: "Failed to verify recruiter status.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      if (profile?.role !== "recruiter") {
-        toast({
-          title: "Access Denied",
-          description: "Only recruiters can post jobs.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const { error: insertError } = await supabase.from("jobs").insert({
-        title: values.title,
-        description: values.description,
+      const { error: insertError } = await supabase.from("all_jobs").insert({
+        job_title: values.title,
+        job_description: values.description,
         job_type: values.jobType,
-        salary_min: values.salaryMin,
-        salary_max: values.salaryMax,
-        skills,
+        job_minsalary: values.salaryMin,
+        job_maxsalary: values.salaryMax,
         company_name: values.companyName,
         company_logo: values.companyLogo,
-        location: values.location,
+        job_location: values.location,
         recruiter_id: user.id,
       });
 
@@ -199,7 +172,10 @@ export default function AddJobPage() {
                 <FormItem>
                   <FormLabel>Job Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., Senior Frontend Developer" {...field} />
+                    <Input
+                      placeholder="e.g., Senior Frontend Developer"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -230,7 +206,10 @@ export default function AddJobPage() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Job Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select job type" />
@@ -255,7 +234,11 @@ export default function AddJobPage() {
                   <FormItem>
                     <FormLabel>Minimum Salary</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="e.g., 50000" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="e.g., 50000"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -269,7 +252,11 @@ export default function AddJobPage() {
                   <FormItem>
                     <FormLabel>Maximum Salary</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="e.g., 80000" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="e.g., 80000"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

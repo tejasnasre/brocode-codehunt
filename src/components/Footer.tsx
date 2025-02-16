@@ -19,7 +19,7 @@ const Footer = () => {
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-8 h-8 bg-indigo-600 rounded-full"></div>
                   <span className="text-white text-xl font-semibold">
-                    JobHuntly
+                    gethired.
                   </span>
                 </div>
                 <p className="text-gray-400 mb-6">
@@ -116,7 +116,7 @@ const Footer = () => {
             {/* Bottom Section */}
             <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center">
               <p className="text-gray-400 mb-4 sm:mb-0">
-                2021 © JobHuntly. All rights reserved.
+                2021 © gethired.. All rights reserved.
               </p>
 
               {/* Social Links */}

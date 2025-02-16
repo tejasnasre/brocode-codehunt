@@ -5,6 +5,7 @@ import "./globals.css";
 import type React from "react";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -12,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JobHuntly - Discover More Than 5000+ Jobs",
-  description: "Find your next career opportunity on JobHuntly",
+  title: "gethired. - Discover More Than 5000+ Jobs",
+  description: "Find your next career opportunity on gethired.",
 };
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistMono.variable} antialiased`}>
         <Header />
+        <Toaster />
         {children}
         <Footer />
       </body>
