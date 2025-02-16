@@ -21,6 +21,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import supabase from "@/lib/supabase";
 import { formatDistanceToNow } from "date-fns";
+import ATSResumeChecker from "@/components/CheckResume";
 
 interface JobDetails {
   id: string;
@@ -208,6 +209,9 @@ export default function JobDetailsPage() {
               </p>
               <Button className="w-full">Apply Now</Button>
             </Card>
+          </div>
+          <div>
+            <ATSResumeChecker jobDescription={job.job_description} />
           </div>
         </div>
       </div>
