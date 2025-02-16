@@ -1,37 +1,16 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*",
-        port: "",
-        pathname: "**",
+        hostname: "**", // This allows images from any host
       },
       {
         protocol: "http",
-        hostname: "*",
-        port: "",
-        pathname: "**",
+        hostname: "**", // This allows images from any host (not recommended for production)
       },
     ],
-    domains: [
-      "localhost",
-      "127.0.0.1",
-      "images.unsplash.com",
-      "via.placeholder.com",
-      "picsum.photos",
-      "res.cloudinary.com",
-      "storage.googleapis.com",
-      "s3.amazonaws.com",
-    ],
-    unoptimized: process.env.NODE_ENV === "development",
-    minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  reactStrictMode: true,
-  swcMinify: true, // Move swcMinify here instead of inside compiler
 };
 
-module.exports = nextConfig;
+export default nextConfig;
